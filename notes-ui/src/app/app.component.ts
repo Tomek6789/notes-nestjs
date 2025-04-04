@@ -16,7 +16,7 @@ import { NotesHandler } from './app.handler';
   imports: [AsyncPipe, DatePipe, ReactiveFormsModule],
   template: `
     <div class="container">
-      <button class="submit-btn" (click)="isFormVisible = !isFormVisible">
+      <button data-cy="btn-add" class="submit-btn" (click)="isFormVisible = !isFormVisible">
         {{ isFormVisible ? 'Hide' : 'Add' }}
       </button>
       @if (isFormVisible) {
@@ -57,7 +57,7 @@ import { NotesHandler } from './app.handler';
 
     <div class="container">
       @for (item of (notesHandler.allNotes$ | async); track item.name) {
-      <div class="item">
+      <div data-cy="note" class="item">
         <span> {{ item.date | date }} </span>
         <button class="submit-btn delete-btn" (click)="onDelete(item._id)">
           Delete

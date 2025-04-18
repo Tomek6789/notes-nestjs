@@ -8,7 +8,7 @@ services:
     volumes:
       - mongo-data:/data/db
     networks:
-      - notes-net  # 👈 add this
+      - notes-net
 
   backend:
     build: ./notes-api

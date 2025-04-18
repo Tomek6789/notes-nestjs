@@ -1,0 +1,42 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - notes-net  # 👈 add this
+
+  backend:
+    build: ./notes-api
+    container_name: node-backend
+    restart: always
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/notes
+    ports:
+      - "3000:3000"
+    networks:
+      - notes-net
+
+  frontend:
+    build: ./notes-ui
+    container_name: angular-frontend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    networks:
+      - notes-net
+
+volumes:
+  mongo-data:
+
+networks:
+  notes-net:
+    driver: bridge

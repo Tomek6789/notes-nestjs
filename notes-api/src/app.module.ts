@@ -14,7 +14,7 @@ import { LinksModule } from './links/links.module';
 // const uri = `mongodb://localhost/nest`;
 
 // MongoDB Docker container
-const uri = 'mongodb://mongodb:27017/your-database-name';
+const uri = 'mongodb://mongodb:27017/notes';
 
 @Module({
   imports: [MongooseModule.forRoot(uri), ConfigModule.forRoot(), LinksModule],

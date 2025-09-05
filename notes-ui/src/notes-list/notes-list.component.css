@@ -1,0 +1,18 @@
+.container {
+    margin: auto;
+    width: 400px;
+}
+
+.item {
+    margin: 20px;
+    padding: 20px;
+    border-bottom: 3px solid #73AD21;
+}
+
+.tag {
+    margin: 0 3px;
+}
+
+.first {
+    margin-left: 0px;
+}

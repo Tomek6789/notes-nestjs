@@ -1,0 +1,81 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "notes",
+    "collectionId": "00bc64c0-5664-490e-9053-19a376430ee3",
+    "dateExported": "2025-07-03T12:07:31.698Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "1c41d635-e538-479d-8c38-242f3b102a66",
+            "colId": "00bc64c0-5664-490e-9053-19a376430ee3",
+            "containerId": "",
+            "name": "links",
+            "url": "localhost:3000/api/links",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2025-07-03T11:58:44.528Z",
+            "modified": "2025-07-03T12:00:12.276Z",
+            "headers": []
+        },
+        {
+            "_id": "734bc2bb-86ff-4024-bfaa-38c9e5241fc2",
+            "colId": "00bc64c0-5664-490e-9053-19a376430ee3",
+            "containerId": "",
+            "name": "links",
+            "url": "localhost:3000/api/links",
+            "method": "POST",
+            "sortNum": 15000,
+            "created": "2025-07-03T12:05:19.533Z",
+            "modified": "2025-07-03T12:07:01.011Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"new name\",\n  \"tags\": [\"news\"],\n  \"url\": \"http://www.interia.pl\",\n  \"honeypot\": \"password\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "b4e159f0-dd59-4ebb-9c91-1c76772ea08e",
+            "colId": "00bc64c0-5664-490e-9053-19a376430ee3",
+            "containerId": "",
+            "name": "links:id",
+            "url": "localhost:3000/api/links/67bb93cc4206011dab514c0f",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2025-07-03T12:02:15.166Z",
+            "modified": "2025-07-03T12:03:03.901Z",
+            "headers": []
+        },
+        {
+            "_id": "ec5a8625-43f7-4eed-8ee2-8a8077a0e9f6",
+            "colId": "00bc64c0-5664-490e-9053-19a376430ee3",
+            "containerId": "",
+            "name": "links:id",
+            "url": "localhost:3000/api/links/67bb93cc4206011dab514c0f",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2025-07-03T12:03:24.582Z",
+            "modified": "2025-07-03T12:03:34.966Z",
+            "headers": []
+        },
+        {
+            "_id": "19765e56-c9d8-478b-bbcd-4b35871cca9c",
+            "colId": "00bc64c0-5664-490e-9053-19a376430ee3",
+            "containerId": "",
+            "name": "links:id",
+            "url": "localhost:3000/api/links/67ffc4ac60690b8fd23c1d8b",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2025-07-03T12:03:51.605Z",
+            "modified": "2025-07-03T12:04:55.277Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"new name\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "J0bVu2wwBlZzJ2X-w-9G8om7eSsvsaniJA5ZuiXLkn2dp6S_3FcqCq8ZOJUXCmc9iQNg3X_RGDe-7HYWBvSCag"
+}

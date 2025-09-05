@@ -1,0 +1,18 @@
+.container {
+  margin: auto;
+  width: 400px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  width: 103%;
+  overflow: hidden;
+}
+
+.visually-hidden {
+  display: none;
+}

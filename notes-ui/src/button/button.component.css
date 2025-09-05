@@ -1,0 +1,20 @@
+
+  .submit-btn {
+    align-self: flex-end;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    margin-top: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .delete-btn {
+    float: right;
+    margin-top: 0;
+    margin-left: 3px;
+  }
+  
+  .submit-btn:hover {
+    background-color: #0056b3;
+  }

@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class NotesHandler {
   noteService = inject(NotesService);
   
-  private allNotes = new BehaviorSubject<Link[]>([]);
+  allNotes = new BehaviorSubject<Link[]>([]);
   allNotes$ = this.allNotes.asObservable();
 
   getAllNotes() {
@@ -21,6 +21,20 @@ export class NotesHandler {
     this.noteService.saveNotes(note).subscribe((note) => {
       this.allNotes.next([...this.allNotes.value, note]);
     });
+  }
+
+  updateNote(note: Partial<Link>) {
+    this.noteService.updateNote(note).subscribe((updatedNote) => {
+      const notes = this.allNotes.getValue()
+      const updatedNotes = notes.map((note) => {
+        if(note._id === updatedNote._id) {
+          return updatedNote
+        } else {
+          return note
+        }
+      })
+      this.allNotes.next(updatedNotes);
+    });    
   }
 
   deleteNote(noteId: string) {

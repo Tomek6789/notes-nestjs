@@ -13,23 +13,30 @@ import { filter, map } from 'rxjs';
   imports: [AsyncPipe, AddNoteComponent, NotesListComponent],
   template: `
     <app-add-note
+      [state]="state"
       [isFormVisible]="isFormVisible"
+      [noteData]="noteToUpdate"
       (addNote)="onAddNote($event)"
+      (updateNote)="onUpdateNote($event)"
+      (hide)="onHide()"
     />
     <div class="container">
       <app-notes-list
         title="To do"
         [notes]="todo$ | async"
+        (update)="onUpdate($event)"
         (delete)="onDelete($event)"
       />
       <app-notes-list
         title="In progress"
         [notes]="progress$ | async"
+        (update)="onUpdate($event)"
         (delete)="onDelete($event)"
       />
       <app-notes-list
         title="Done"
         [notes]="done$ | async"
+        (update)="onUpdate($event)"
         (delete)="onDelete($event)"
       />
     </div>
@@ -37,6 +44,9 @@ import { filter, map } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   notesHandler = inject(NotesHandler);
+  noteToUpdate: Link | undefined = undefined;
+  state: 'add' | 'edit' = 'add';
+  isFormVisible = false;
 
   todo$ = this.notesHandler.allNotes$.pipe(
     map((n) => n.filter((x) => x.status === 'TODO'))
@@ -48,15 +58,28 @@ export class AppComponent implements OnInit {
     map((n) => n.filter((x) => x.status === 'DONE'))
   );
 
-  isFormVisible = false;
-  categories = ['Work', 'Personal', 'Urgent', 'Others'];
-
   ngOnInit() {
     this.notesHandler.getAllNotes();
   }
 
+  onHide() {
+    this.isFormVisible = !this.isFormVisible;
+  }
+
+  onUpdate(noteId: string) {
+    const notes = this.notesHandler.allNotes.getValue();
+    this.noteToUpdate = notes.find((note) => note._id === noteId);
+    this.state = 'edit';
+
+    this.isFormVisible = !this.isFormVisible;
+  }
+
   onAddNote(note: Partial<Link>) {
     this.notesHandler.addNote(note);
+  }
+
+  onUpdateNote(note: Partial<Link>) {
+    this.notesHandler.updateNote(note);
   }
 
   onDelete(noteId: string) {

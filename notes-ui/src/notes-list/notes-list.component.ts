@@ -13,6 +13,9 @@ import { ButtonComponent } from '../button/button.component';
         @for (item of notes; track item.name) {
         <div data-cy="note" class="item">
           <span> {{ item.date | date }} </span>
+          <button blue-notes class="submit-btn delete-btn" (click)="update.emit(item._id)">
+            Update
+          </button>
           <button blue-notes class="submit-btn delete-btn" (click)="delete.emit(item._id)">
             Delete
           </button>
@@ -37,5 +40,6 @@ export class NotesListComponent {
   @Input() title: string = ''
   @Input() notes: Link[] | null = [];
 
+  @Output() update = new EventEmitter<string>()
   @Output() delete = new EventEmitter<string>()
 }

@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ButtonComponent } from '../button/button.component';
+import { Link } from '../app/notes.service';
 
 @Component({
   selector: 'app-add-note',
@@ -16,7 +17,7 @@ import { ButtonComponent } from '../button/button.component';
       <button
       blue-notes
         data-cy="btn-add"
-        (click)="isFormVisible = !isFormVisible"
+        (click)="hide.emit()"
       >
         {{ isFormVisible ? 'Hide' : 'Add' }}
       </button>
@@ -53,6 +54,11 @@ import { ButtonComponent } from '../button/button.component';
             <option value="typescript">typescript</option>
             <option value="nodejs">nodejs</option>
           </select>
+          <select class="select" formControlName="status">
+            <option value="TODO">TODO</option>
+            <option value="PROGRESS">PROGRESS</option>
+            <option value="DONE">DONE</option>
+          </select>
 
           <button type="submit" class="submit-btn">Submit</button>
         </form>
@@ -70,8 +76,11 @@ import { ButtonComponent } from '../button/button.component';
 })
 export class AddNoteComponent {
   @Input() isFormVisible = false;
+  @Input() state: 'edit' | 'add' = 'add';
 
   @Output() addNote = new EventEmitter();
+  @Output() updateNote = new EventEmitter();
+  @Output() hide = new EventEmitter();
 
   note = new FormGroup({
     name: new FormControl('', {
@@ -83,14 +92,32 @@ export class AddNoteComponent {
     url: new FormControl('', { nonNullable: true }),
     honeypot: new FormControl('password'),
     status: new FormControl('TODO'),
+    _id: new FormControl(''),
   });
+
+  private _noteData: Link | undefined = undefined
+  @Input() 
+  get noteData(): Link | undefined {
+    return this._noteData
+  }
+  set noteData(data: Link | undefined) {
+    console.log(data)
+    if(data) {
+      this._noteData = data;
+      this.note.patchValue(data)
+    }
+  }
 
   onAddNote() {
     if (this.note.invalid || this.note.get('honeypot')?.value !== 'password') {
       return;
     }
 
-    this.addNote.emit(this.note.value);
+    if(this.state === 'add') {
+      this.addNote.emit(this.note.value);
+    } else {
+      this.updateNote.emit(this.note.value)
+    }
     this.note.reset();
   }
 }

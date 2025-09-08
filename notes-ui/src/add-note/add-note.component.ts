@@ -114,7 +114,8 @@ export class AddNoteComponent {
     }
 
     if(this.state === 'add') {
-      this.addNote.emit(this.note.value);
+      const { _id, ...value } = this.note.value
+      this.addNote.emit(value);
     } else {
       this.updateNote.emit(this.note.value)
     }

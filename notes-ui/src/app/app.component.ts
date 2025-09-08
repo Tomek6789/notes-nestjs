@@ -4,7 +4,7 @@ import { AsyncPipe } from '@angular/common';
 import { NotesHandler } from './app.handler';
 import { AddNoteComponent } from '../add-note/add-note.component';
 import { NotesListComponent } from '../notes-list/notes-list.component';
-import { filter, map } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-root',

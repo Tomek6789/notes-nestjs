@@ -76,10 +76,12 @@ export class AppComponent implements OnInit {
 
   onAddNote(note: Partial<Link>) {
     this.notesHandler.addNote(note);
+    this.isFormVisible = false
   }
 
   onUpdateNote(note: Partial<Link>) {
     this.notesHandler.updateNote(note);
+    this.isFormVisible = false
   }
 
   onDelete(noteId: string) {

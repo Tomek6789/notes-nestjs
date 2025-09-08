@@ -25,12 +25,6 @@ import { Link } from '../app/notes.service';
       <div class="item">
         <form [formGroup]="note" (ngSubmit)="onAddNote()">
           <input
-            formControlName="honeypot"
-            class="visually-hidden"
-            tabindex="-1"
-            autocomplete="off"
-          />
-          <input
             formControlName="url"
             type="text"
             placeholder="URL"
@@ -90,7 +84,6 @@ export class AddNoteComponent {
     description: new FormControl('', { nonNullable: true }),
     tags: new FormControl([''], { nonNullable: true }),
     url: new FormControl('', { nonNullable: true }),
-    honeypot: new FormControl('password'),
     status: new FormControl('TODO'),
     _id: new FormControl(''),
   });
@@ -109,7 +102,7 @@ export class AddNoteComponent {
   }
 
   onAddNote() {
-    if (this.note.invalid || this.note.get('honeypot')?.value !== 'password') {
+    if (this.note.invalid) {
       return;
     }
 

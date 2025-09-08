@@ -16,9 +16,6 @@ export class LinksController {
 
   @Post()
   create(@Body() createLinkDto: CreateLinkDto) {
-    if (createLinkDto.honeypot !== 'password') {
-      return `You're not authorized to create a link.`;
-    }
     return this.linksService.create(createLinkDto);
   }
 
